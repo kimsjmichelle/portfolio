@@ -1,0 +1,230 @@
+:root{
+  --bg:#000;
+  --gray: rgba(255,255,255,.45);
+  --muted: rgba(255,255,255,.6);
+
+  --gap: 4px;
+  --pad: 8px;
+  --right-gutter: 120px;
+}
+
+*{ box-sizing:border-box; }
+html,body{
+  width:100%;
+  height:100%;
+  margin:0;
+}
+
+body{
+  background: var(--bg);
+  color:#fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  overflow-x:hidden;
+}
+
+#view{
+  width:100%;
+  min-height:100vh;
+}
+
+/* ---------- HOME ---------- */
+.stage{
+  position:relative;
+  min-height:100vh;
+  background:#000;
+}
+
+.bg-title{
+  position:fixed;
+  right:16px;
+  bottom:12px;
+  z-index:50;
+  pointer-events:none;
+
+  color: var(--gray);
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:0.08em;
+
+  display:inline-flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:1px; /* * 와 텍스트 사이 간격 */
+}
+
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  padding: var(--pad);
+  padding-right: calc(var(--pad) + var(--right-gutter));
+}
+
+.tile{
+  background:#000;
+  border:none;
+  cursor:pointer;
+  aspect-ratio: 4 / 3;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.tile img{
+  width:90%;
+  height:90%;
+  object-fit:contain;
+}
+
+.size-sm img{ transform: scale(0.92); }
+.size-md img{ transform: scale(1); }
+.size-lg img{ transform: scale(1.08); }
+
+/* ---------- DETAIL ---------- */
+.detail{
+  background:#000;
+}
+
+/* 헤더는 상단 고정 */
+.detailHeader{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  padding:12px 14px;
+  background: rgba(0,0,0,.9);
+  backdrop-filter: blur(8px);
+}
+
+.back{
+  height:34px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);
+  background:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.detailMeta{
+  margin-top:10px;
+}
+
+.detailMeta h1{
+  margin:0;
+  font-size: clamp(20px, 2.4vw, 32px);
+}
+
+.detailMeta p{
+  margin-top:4px;
+  color: var(--muted);
+}
+
+/* ✅ 이미지 영역 */
+.detailContent{
+  margin:0;
+  padding:0;
+}
+
+/* ✅ 이미지 1장 = 화면 1뷰 */
+.cut{
+  width:100vw;
+  height: calc(100vh - 96px); /* 헤더 높이 제외 */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ✅ 화면 꽉 채우기 (크롭 없음) */
+.cut img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+}
+
+/* 로딩 실패 */
+.fallback{
+  color: rgba(255,255,255,.5);
+  font-size:14px;
+  padding: 20px;
+}
+/* --- Figma link button --- */
+.figmaLink{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  margin-top:14px;
+  height:34px;
+  padding:0 12px;
+  border-radius:999px;
+
+  border:1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+
+  font-size:14px;
+  text-decoration:none;
+}
+
+.figmaLink:hover{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.35);
+}
+
+
+
+
+.tile img{
+  transition: transform 0.28s ease;
+}
+
+.tile:hover img{
+  transform: scale(1.04);
+}
+
+
+.siteFooter{
+  margin-top: 30px;
+  padding: 24px var(--pad) 32px var(--pad);
+
+  font-size: 13px;                /* 작게 */
+  line-height: 1.7;               /* 살짝 여유 */
+  letter-spacing: 0.06em;         /* bg-title과 결 맞추기 */
+
+  color: var(--gray);             /* tjwls works와 동일 계열 */
+  text-align: left;
+}
+
+.siteFooter .contact{
+  margin-bottom: 2px;
+}
+
+.siteFooter a{
+  color: var(--gray);
+  text-decoration: none;
+}
+
+.siteFooter a:hover{
+  text-decoration: underline;
+}
+
+.siteFooter .tagline{
+  color: rgba(255,255,255,.4);    /* contact보다 한 톤 더 연하게 */
+}
+
+.spinMark{
+  display:inline-block;
+
+  font-size: 60px;          /* ✅ 더 크게 (추천 32~40px) */
+  line-height: 1;
+  color: var(--gray);
+
+  transform-origin: 50% 50%; /* ✅ 정확히 중심 */
+  will-change: transform;   /* ✅ 회전 안정성 */
+
+  opacity: 1.0;
+}
